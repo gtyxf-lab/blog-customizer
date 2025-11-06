@@ -4,7 +4,10 @@ import { Button } from 'src/ui/button';
 import React, { useRef, useState } from 'react';
 import {
 	ArticleStateType,
+	backgroundColors,
+	contentWidthArr,
 	defaultArticleState,
+	fontColors,
 	fontFamilyOptions,
 	fontSizeOptions,
 	OptionType,
@@ -12,6 +15,8 @@ import {
 import { RadioGroup } from 'src/ui/radio-group';
 import { Select } from 'src/ui/select';
 import { useOutsideClickClose } from 'src/ui/select/hooks/useOutsideClickClose';
+import { Separator } from 'src/ui/separator';
+import { Text } from 'src/ui/text';
 import styles from './ArticleParamsForm.module.scss';
 
 type ArticleParamsFormProps = {
@@ -62,6 +67,10 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 					className={styles.form}
 					onSubmit={handleFormSubmit}
 					onReset={handleFormReset}>
+					<Text as='h2' size={31} weight={800} uppercase>
+						Задайте параметры
+					</Text>
+
 					<Select
 						selected={formState.fontFamilyOption}
 						options={fontFamilyOptions}
@@ -75,6 +84,29 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 						selected={formState.fontSizeOption}
 						onChange={(value) => handleFieldChange('fontSizeOption', value)}
 						title='Размер шрифта'
+					/>
+
+					<Select
+						selected={formState.fontColor}
+						options={fontColors}
+						onChange={(value) => handleFieldChange('fontColor', value)}
+						title='Цвет шрифта'
+					/>
+
+					<Separator />
+
+					<Select
+						selected={formState.backgroundColor}
+						options={backgroundColors}
+						onChange={(value) => handleFieldChange('backgroundColor', value)}
+						title='Цвет фона'
+					/>
+
+					<Select
+						selected={formState.contentWidth}
+						options={contentWidthArr}
+						onChange={(value) => handleFieldChange('contentWidth', value)}
+						title='Ширина контента'
 					/>
 
 					<div className={styles.bottomContainer}>
