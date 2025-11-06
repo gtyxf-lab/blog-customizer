@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Text } from './Text';
+import { Text, TextProps } from './Text';
 
 const meta: Meta<typeof Text> = {
 	component: Text,
@@ -48,7 +48,7 @@ export const SelectStory: Story = {
 			control: { type: 'select' },
 		},
 	},
-	render: (args) => {
+	render: (args: TextProps) => {
 		return (
 			<Text {...args}>
 				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi, nulla.
