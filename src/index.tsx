@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { CSSProperties, StrictMode, useState } from 'react';
+import { CSSProperties, StrictMode, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { ArticleParamsForm } from './components/article-params-form/ArticleParamsForm';
@@ -22,6 +22,10 @@ const App = () => {
 		console.log('Новые настройки:', newParams);
 		setArticleState(newParams);
 	};
+
+	useEffect(() => {
+		document.title = 'Blog Customizer';
+	}, []);
 
 	return (
 		<main
