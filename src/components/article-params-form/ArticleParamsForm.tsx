@@ -6,8 +6,10 @@ import {
 	ArticleStateType,
 	defaultArticleState,
 	fontFamilyOptions,
+	fontSizeOptions,
 	OptionType,
 } from 'src/constants/articleProps';
+import { RadioGroup } from 'src/ui/radio-group';
 import { Select } from 'src/ui/select';
 import { useOutsideClickClose } from 'src/ui/select/hooks/useOutsideClickClose';
 import styles from './ArticleParamsForm.module.scss';
@@ -40,6 +42,13 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 		}));
 	};
 
+	const handleFontSizeChange = (newFontSize: OptionType) => {
+		setFormState((prevState) => ({
+			...prevState,
+			fontSizeOption: newFontSize,
+		}));
+	};
+
 	return (
 		<>
 			<ArrowButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
@@ -53,6 +62,14 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 						options={fontFamilyOptions}
 						onChange={handleFontChange}
 						title='Шрифт'
+					/>
+
+					<RadioGroup
+						name='font-size'
+						options={fontSizeOptions}
+						selected={formState.fontSizeOption}
+						onChange={handleFontSizeChange}
+						title='Размер шрифта'
 					/>
 
 					<div className={styles.bottomContainer}>
