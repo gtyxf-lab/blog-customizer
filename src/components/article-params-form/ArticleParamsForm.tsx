@@ -1,7 +1,7 @@
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
 	ArticleStateType,
 	defaultArticleState,
@@ -35,6 +35,12 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 		onApply(formState);
 	};
 
+	const handleFormReset = (e: React.FormEvent) => {
+		e.preventDefault();
+		setFormState(defaultArticleState);
+		onApply(defaultArticleState);
+	};
+
 	const handleFontChange = (newFontFamily: OptionType) => {
 		setFormState((prevState) => ({
 			...prevState,
@@ -56,7 +62,10 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 				ref={formRef}
 				className={`${styles.container} 
 				${isOpen ? styles.container_open : ''}`}>
-				<form className={styles.form} onSubmit={handleFormSubmit}>
+				<form
+					className={styles.form}
+					onSubmit={handleFormSubmit}
+					onReset={handleFormReset}>
 					<Select
 						selected={formState.fontFamilyOption}
 						options={fontFamilyOptions}
