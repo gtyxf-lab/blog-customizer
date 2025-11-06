@@ -41,17 +41,13 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 		onApply(defaultArticleState);
 	};
 
-	const handleFontChange = (newFontFamily: OptionType) => {
+	const handleFieldChange = (
+		fieldName: keyof ArticleStateType,
+		newValue: OptionType
+	) => {
 		setFormState((prevState) => ({
 			...prevState,
-			fontFamilyOption: newFontFamily,
-		}));
-	};
-
-	const handleFontSizeChange = (newFontSize: OptionType) => {
-		setFormState((prevState) => ({
-			...prevState,
-			fontSizeOption: newFontSize,
+			[fieldName]: newValue,
 		}));
 	};
 
@@ -69,7 +65,7 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 					<Select
 						selected={formState.fontFamilyOption}
 						options={fontFamilyOptions}
-						onChange={handleFontChange}
+						onChange={(value) => handleFieldChange('fontFamilyOption', value)}
 						title='Шрифт'
 					/>
 
@@ -77,7 +73,7 @@ export const ArticleParamsForm = ({ onApply }: ArticleParamsFormProps) => {
 						name='font-size'
 						options={fontSizeOptions}
 						selected={formState.fontSizeOption}
-						onChange={handleFontSizeChange}
+						onChange={(value) => handleFieldChange('fontSizeOption', value)}
 						title='Размер шрифта'
 					/>
 
